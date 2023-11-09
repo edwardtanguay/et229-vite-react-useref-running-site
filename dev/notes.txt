@@ -1,9 +1,12 @@
 - x put header in component
 - x Timo: background bug
-- .. when user types, then legend back to Welcome
-- .. password checken with focus
-- 
-- check login/password
+- x when user types, then legend back to Welcome
+- x password checken with focus
+- .. check login/password
+	- x create a component LoggedInPage
+	- .. in App.tsx, create state variable "isLoggedIn"
+		- test switch isLoggedIn
+
 	- if correct, show page with user data 
 - refactoring: create form components for login and password
 

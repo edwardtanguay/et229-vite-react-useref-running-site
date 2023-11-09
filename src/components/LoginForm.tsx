@@ -7,18 +7,12 @@ export const LoginForm = () => {
 	const inputLoginRef = useRef<HTMLInputElement>(null);
 	const inputPasswordRef = useRef<HTMLInputElement>(null);
 
-	const handleLoginChange = (login: string) => {
-		const _formData = structuredClone(formData);
-		_formData.login = login;
-		setFormData(_formData);
-		setLegend(config.initialLegend)
-	};
-
-	const handlePasswordChange = (password: string) => {
-		const _formData = structuredClone(formData);
-		_formData.password = password;
-		setFormData(_formData);
-		setLegend(config.initialLegend)
+	const handleFieldChange = (fieldName: string, value: string) => {
+		setFormData({
+			...formData,
+			[fieldName]: value,
+		});
+		setLegend(config.initialLegend);
 	};
 
 	const handleFormSubmit = () => {
@@ -27,11 +21,13 @@ export const LoginForm = () => {
 			if (inputLoginRef.current) {
 				inputLoginRef.current.focus();
 			}
-		} else if(formData.password !== config.user.password) {
+		} else if (formData.password !== config.user.password) {
 			setLegend("Password was incorrect");
 			if (inputPasswordRef.current) {
 				inputPasswordRef.current.focus();
 			}
+		} else {
+			alert("logging in");
 		}
 	};
 
@@ -48,7 +44,7 @@ export const LoginForm = () => {
 					autoFocus
 					ref={inputLoginRef}
 					value={formData.login}
-					onChange={(e) => handleLoginChange(e.target.value)}
+					onChange={(e) => handleFieldChange('login', e.target.value)}
 					id="login"
 				/>
 			</div>
@@ -61,7 +57,7 @@ export const LoginForm = () => {
 					type="password"
 					ref={inputPasswordRef}
 					value={formData.password}
-					onChange={(e) => handlePasswordChange(e.target.value)}
+					onChange={(e) => handleFieldChange('password', e.target.value)}
 					id="password"
 				/>
 			</div>
