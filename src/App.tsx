@@ -9,12 +9,13 @@ function App() {
 	const [isLoggedIn, setIsLoggedIn] = useState(false);
 	return (
 		<>
+		<div className="lg:mx-[10%]">
 			<Header isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
 			{isLoggedIn ? (
 				<LoggedInPage />
 			) : (
 				<LoginForm setIsLoggedIn={setIsLoggedIn} />
-			)}
+			)}</div>
 		</>
 	);
 }
