@@ -1,11 +1,10 @@
 import { useState, useRef } from "react";
 import * as config from "../config";
+import { LoginProps } from "../types";
 
-type Props = {
-	setIsLoggedIn: (isLoggedIn: boolean) => void
-}
+type FormProps = Pick<LoginProps, 'setIsLoggedIn'>;
 
-export const LoginForm = ({ setIsLoggedIn }: Props) => {
+export const LoginForm = ({ setIsLoggedIn }: FormProps) => {
 	const [formData, setFormData] = useState(config.initialFormData);
 	const [legend, setLegend] = useState(config.initialLegend);
 	const inputLoginRef = useRef<HTMLInputElement>(null);

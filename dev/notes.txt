@@ -8,8 +8,11 @@
 		- x test switch isLoggedIn
 	- x if correct, show page with user data 
 - x refactoring: create form components for login and password
+- x Logout button
 
-- .. Logout button
+- x Khalil Pick/Partial refactoring
+
+- .. allow form to receive enter as a submit
 
 
 
