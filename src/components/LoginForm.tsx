@@ -1,4 +1,15 @@
+import { useState } from "react";
+import * as config from "../config";
+
 export const LoginForm = () => {
+	const [formData, setFormData] = useState(config.initialFormData);
+
+	const handleLoginChange = (login: string) => {
+		const _formData = structuredClone(formData);
+		_formData.login = login;
+		setFormData(_formData);
+	};
+
 	return (
 		<fieldset className="border border-gray-500 p-4 w-full rounded bg-slate-300/50">
 			<legend className="font-bold">Welcome</legend>
@@ -7,7 +18,12 @@ export const LoginForm = () => {
 				<label className="w-[5rem]" htmlFor="login">
 					Login:
 				</label>
-				<input type="text" id="login" />
+				<input
+					type="text"
+					value={formData.login}
+					onChange={(e) => handleLoginChange(e.target.value)}
+					id="login"
+				/>
 			</div>
 
 			<div className="mb-4 flex gap-2">
@@ -20,6 +36,9 @@ export const LoginForm = () => {
 			<div className="mt-5 flex justify-end pr-3">
 				<button>Time to run!</button>
 			</div>
+			<pre className="debug">
+				{JSON.stringify(formData, null, 2)}
+			</pre>
 		</fieldset>
 	);
 };
