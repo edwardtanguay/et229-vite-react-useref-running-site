@@ -1,7 +1,9 @@
+import { Header } from "./components/Header";
+
 function App() {
 	return (
 		<>
-			<h1 className="text-3xl mb-3 text-slate-800">Info Site</h1>
+			<Header />
 			<p>Welcome to this site.</p>
 		</>
 	);
