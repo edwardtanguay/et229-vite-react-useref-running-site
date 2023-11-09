@@ -1,7 +1,11 @@
 import { useState, useRef } from "react";
 import * as config from "../config";
 
-export const LoginForm = () => {
+type Props = {
+	setIsLoggedIn: (isLoggedIn: boolean) => void
+}
+
+export const LoginForm = ({ setIsLoggedIn }: Props) => {
 	const [formData, setFormData] = useState(config.initialFormData);
 	const [legend, setLegend] = useState(config.initialLegend);
 	const inputLoginRef = useRef<HTMLInputElement>(null);
@@ -27,7 +31,7 @@ export const LoginForm = () => {
 				inputPasswordRef.current.focus();
 			}
 		} else {
-			alert("logging in");
+			setIsLoggedIn(true)
 		}
 	};
 

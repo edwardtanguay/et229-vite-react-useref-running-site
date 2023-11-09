@@ -9,9 +9,9 @@ function App() {
 		<>
 			<Header />
 			{isLoggedIn ? (
-			<LoggedInPage/>
+				<LoggedInPage />
 			) : (
-			<LoginForm/>
+			<LoginForm setIsLoggedIn={setIsLoggedIn}/>
 			)}
 		</>
 	);
