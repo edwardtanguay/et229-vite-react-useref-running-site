@@ -35,6 +35,7 @@ export const LoginForm = ({ setIsLoggedIn }: FormProps) => {
 	};
 
 	return (
+		<form onKeyDown={(e) => { if (e.key === 'Enter') { handleFormSubmit() } }}>
 		<fieldset className="border border-gray-500 p-4 w-full rounded bg-slate-300/50">
 			<legend className="font-bold">{legend}</legend>
 
@@ -69,5 +70,6 @@ export const LoginForm = ({ setIsLoggedIn }: FormProps) => {
 				<button onClick={handleFormSubmit}>Time to run!</button>
 			</div>
 		</fieldset>
+		</form>
 	);
 };
