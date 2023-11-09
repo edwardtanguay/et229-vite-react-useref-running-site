@@ -16,6 +16,10 @@ export const LoginForm = () => {
 		setFormData(_formData);
 	};
 
+	const handleFormSubmit = () => {
+		alert(JSON.stringify(formData, null, 2))
+	}
+
 	return (
 		<fieldset className="border border-gray-500 p-4 w-full rounded bg-slate-300/50">
 			<legend className="font-bold">Welcome</legend>
@@ -37,7 +41,7 @@ export const LoginForm = () => {
 					Password:
 				</label>
 				<input
-					type="text"
+					type="password"
 					value={formData.password}
 					onChange={(e) => handlePasswordChange(e.target.value)}
 					id="password"
@@ -45,11 +49,8 @@ export const LoginForm = () => {
 			</div>
 
 			<div className="mt-5 flex justify-end pr-3">
-				<button>Time to run!</button>
+				<button onClick={handleFormSubmit}>Time to run!</button>
 			</div>
-			<pre className="debug">
-				{JSON.stringify(formData, null, 2)}
-			</pre>
 		</fieldset>
 	);
 };
