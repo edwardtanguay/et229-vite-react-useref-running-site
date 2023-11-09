@@ -1,10 +1,11 @@
 import { Header } from "./components/Header";
+import { LoginForm } from "./components/LoginForm";
 
 function App() {
 	return (
 		<>
 			<Header />
-			<p>Welcome to this site.</p>
+			<LoginForm/>
 		</>
 	);
 }
