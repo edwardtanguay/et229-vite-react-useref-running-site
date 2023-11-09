@@ -8,3 +8,5 @@ export const user = {
 	password: '111'
 }
 
+export const initialLegend = 'Welcome';
+

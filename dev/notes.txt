@@ -1,6 +1,8 @@
 - x put header in component
-
-- .. Timo: background bug
+- x Timo: background bug
+- .. when user types, then legend back to Welcome
+- .. password checken with focus
+- 
 - check login/password
 	- if correct, show page with user data 
 - refactoring: create form components for login and password
