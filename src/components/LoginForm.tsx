@@ -1,8 +1,8 @@
-import { useState, useRef } from "react";
+import { useState, useRef, FormEvent } from "react";
 import * as config from "../config";
 import { LoginProps } from "../types";
 
-type FormProps = Pick<LoginProps, 'setIsLoggedIn'>;
+type FormProps = Pick<LoginProps, "setIsLoggedIn">;
 
 export const LoginForm = ({ setIsLoggedIn }: FormProps) => {
 	const [formData, setFormData] = useState(config.initialFormData);
@@ -15,10 +15,10 @@ export const LoginForm = ({ setIsLoggedIn }: FormProps) => {
 			...formData,
 			[fieldName]: value,
 		});
-		setLegend(config.initialLegend);
 	};
 
-	const handleFormSubmit = () => {
+	const handleFormSubmit = (e: FormEvent<HTMLFormElement>) => {
+		e.preventDefault();
 		if (formData.login !== config.user.login) {
 			setLegend("Login was incorrect");
 			if (inputLoginRef.current) {
@@ -30,46 +30,55 @@ export const LoginForm = ({ setIsLoggedIn }: FormProps) => {
 				inputPasswordRef.current.focus();
 			}
 		} else {
-			setIsLoggedIn(true)
+			setIsLoggedIn(true);
 		}
 	};
 
 	return (
-		<form onKeyDown={(e) => { if (e.key === 'Enter') { handleFormSubmit() } }}>
-		<fieldset className="border border-gray-500 p-4 w-full rounded bg-slate-300/50">
-			<legend className="font-bold">{legend}</legend>
+		<form onSubmit={(e) => handleFormSubmit(e)}>
+			<fieldset className="flex flex-col md:flex-row gap-6 rounded-lg bg-slate-500/50 p-5 md:pb-10">
+				<legend>{legend}</legend>
+				<div className="md:w-2/5">
+					<label
+						className="block mb-2 text-sm font-medium text-gray-900"
+						htmlFor="login"
+					>
+						Login:
+					</label>
+					<input
+						className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500  w-full p-2.5"
+						type="text"
+						autoFocus
+						ref={inputLoginRef}
+						value={formData.login}
+						onChange={(e) =>
+							handleFieldChange("login", e.target.value)
+						}
+						id="login"
+					/>
+				</div>
 
-			<div className="mb-4 flex gap-2">
-				<label className="w-[5rem]" htmlFor="login">
-					Login:
-				</label>
-				<input
-					type="text"
-					autoFocus
-					ref={inputLoginRef}
-					value={formData.login}
-					onChange={(e) => handleFieldChange('login', e.target.value)}
-					id="login"
-				/>
-			</div>
+				<div className="md:w-2/5">
+					<label
+						className="block mb-2 text-sm font-medium text-gray-900"
+						htmlFor="password"
+					>
+						Password:
+					</label>
+					<input
+						className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500  w-full p-2.5 "
+						type="password"
+						ref={inputPasswordRef}
+						value={formData.password}
+						onChange={(e) =>
+							handleFieldChange("password", e.target.value)
+						}
+						id="password"
+					/>
+				</div>
 
-			<div className="mb-4 flex gap-2">
-				<label className="w-[5rem]" htmlFor="password">
-					Password:
-				</label>
-				<input
-					type="password"
-					ref={inputPasswordRef}
-					value={formData.password}
-					onChange={(e) => handleFieldChange('password', e.target.value)}
-					id="password"
-				/>
-			</div>
-
-			<div className="mt-5 flex justify-end pr-3">
-				<button onClick={handleFormSubmit}>Time to run!</button>
-			</div>
-		</fieldset>
+				<button className="place-self-end md:w-1/5">Time to run!</button>
+			</fieldset>
 		</form>
 	);
 };
