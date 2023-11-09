@@ -1,8 +1,10 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import * as config from "../config";
 
 export const LoginForm = () => {
 	const [formData, setFormData] = useState(config.initialFormData);
+	const [legend, setLegend] = useState("Welcome");
+	const inputLoginRef = useRef<HTMLInputElement>(null);
 
 	const handleLoginChange = (login: string) => {
 		const _formData = structuredClone(formData);
@@ -17,12 +19,17 @@ export const LoginForm = () => {
 	};
 
 	const handleFormSubmit = () => {
-		alert(JSON.stringify(formData, null, 2))
-	}
+		if (formData.login !== config.user.login) {
+			setLegend("Login was incorrect");
+			if (inputLoginRef.current) {
+				inputLoginRef.current.focus();
+			}
+		}
+	};
 
 	return (
 		<fieldset className="border border-gray-500 p-4 w-full rounded bg-slate-300/50">
-			<legend className="font-bold">Welcome</legend>
+			<legend className="font-bold">{legend}</legend>
 
 			<div className="mb-4 flex gap-2">
 				<label className="w-[5rem]" htmlFor="login">
@@ -30,6 +37,8 @@ export const LoginForm = () => {
 				</label>
 				<input
 					type="text"
+					autoFocus
+					ref={inputLoginRef}
 					value={formData.login}
 					onChange={(e) => handleLoginChange(e.target.value)}
 					id="login"

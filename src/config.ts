@@ -3,3 +3,8 @@ export const initialFormData = {
 	password: ''
 }
 
+export const user = {
+	login: 'hal',
+	password: '111'
+}
+

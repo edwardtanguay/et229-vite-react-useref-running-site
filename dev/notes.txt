@@ -1,2 +1,10 @@
-- .. put header in component
+- x put header in component
+
+- .. Timo: background bug
+- check login/password
+	- if correct, show page with user data 
+- refactoring: create form components for login and password
+
+
+
 
