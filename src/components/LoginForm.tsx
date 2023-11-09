@@ -10,6 +10,12 @@ export const LoginForm = () => {
 		setFormData(_formData);
 	};
 
+	const handlePasswordChange = (password: string) => {
+		const _formData = structuredClone(formData);
+		_formData.password = password;
+		setFormData(_formData);
+	};
+
 	return (
 		<fieldset className="border border-gray-500 p-4 w-full rounded bg-slate-300/50">
 			<legend className="font-bold">Welcome</legend>
@@ -30,7 +36,12 @@ export const LoginForm = () => {
 				<label className="w-[5rem]" htmlFor="password">
 					Password:
 				</label>
-				<input type="password" id="password" />
+				<input
+					type="text"
+					value={formData.password}
+					onChange={(e) => handlePasswordChange(e.target.value)}
+					id="password"
+				/>
 			</div>
 
 			<div className="mt-5 flex justify-end pr-3">
